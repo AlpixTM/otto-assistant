@@ -12,7 +12,15 @@ says the date
 """
 def ex(cmd):
     # set locale to get the right month names
-    locale.setlocale(locale.LC_TIME, settings.LANGUAGE.replace("-", "_"))
+    # Name of locale depends on system. i.e. Id had an error with de-DE, because my locale is named
+    # de_DE.utf-8, so try this if it fails without.
+    try:
+        locale.setlocale(locale.LC_TIME, settings.LANGUAGE.replace("-", "_"))
+    except locale.Error:
+        try:
+            locale.setlocale(locale.LC_TIME, settings.LANGUAGE.replace("-", "_") + ".utf-8")
+        except locale.Error:
+            print("Your locale was not found, using default locale")
 
     # get the date
     date = datetime.now()
