@@ -12,8 +12,6 @@ says the date
 """
 def ex(cmd):
     # set locale to get the right month names
-    # Name of locale depends on system. i.e. Id had an error with de-DE, because my locale is named
-    # de_DE.utf-8, so try this if it fails without.
     try:
         locale.setlocale(locale.LC_TIME, settings.LANGUAGE.replace("-", "_"))
     except locale.Error:
