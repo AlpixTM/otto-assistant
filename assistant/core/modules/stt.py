@@ -51,7 +51,8 @@ def recognize(audio):
         # try recognizing audio from google
         try:
             # settings query
-            output = recognizer.recognize_google(audio, language=settings.LANGUAGE)
+            #output = recognizer.recognize_google(audio, language=settings.LANGUAGE)
+            output = recognizer.recognize_sphinx(audio, language="de-DE")
             # return output as text
         except sr.UnknownValueError:
             log.debug("Speech engine couldn't resolve audio")
@@ -77,7 +78,8 @@ def recognize_for_keyword():
     log.debug("Recognizing keyword...")
     try:
         # recognize input
-        input = recognizer.recognize_google(audio, language=settings.LANGUAGE)
+        #input = recognizer.recognize_google(audio, language=settings.LANGUAGE)
+        input = recognizer.recognize_sphinx(audio, language="de-DE")
         # check if keyword in input
         if settings.KEYWORD in input.lower():
             log.debug("Keyword detected")
